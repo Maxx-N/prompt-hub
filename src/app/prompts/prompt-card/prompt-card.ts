@@ -9,5 +9,9 @@ import { Prompt } from '../prompt.model';
   styleUrl: './prompt-card.scss',
 })
 export class PromptCard {
-  prompt = input.required<Prompt>()
+  prompt = input.required<Prompt>();
+
+  copyToClipboard() {
+    void navigator.clipboard.writeText(this.prompt().content);
+  }
 }
