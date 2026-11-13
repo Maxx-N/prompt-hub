@@ -84,6 +84,15 @@
       "userId": 1,
       "score": 0,
       "createdAt": "2026-11-13T08:44:35.013Z"
+    },
+    {
+      "id": 8,
+      "title": "Test",
+      "content": "Test auth",
+      "categoryId": 1,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-13T10:14:05.785Z"
     }
   ],
   "votes": [
