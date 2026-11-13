@@ -32,6 +32,11 @@
       "id": 1,
       "username": "Système",
       "passwordHash": "$2b$10$placeholder.no.login.system.user.xYz123456789"
+    },
+    {
+      "id": 4,
+      "username": "max",
+      "passwordHash": "$2b$10$mx0nd3tcnKkFyuDLQPvJwO68rKEzBtphWy.MGwbJWYj9d/8beBO42"
     }
   ],
   "prompts": [

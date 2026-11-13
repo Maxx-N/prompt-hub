@@ -1,7 +1,8 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Button } from 'primeng/button';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../auth/auth-service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-  isDark = signal(false);
+  protected authService = inject(AuthService)
+  protected isDark = signal(false);
 
   toggleDarkMode() {
     this.isDark.update((isDark) => !isDark);

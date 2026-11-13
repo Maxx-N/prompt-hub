@@ -1,9 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Card } from 'primeng/card';
 import { Button } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+
+import { AuthService } from '../auth-service';
 
 @Component({
   selector: 'app-auth-form',
@@ -12,6 +15,8 @@ import { PasswordModule } from 'primeng/password';
   styleUrl: './auth-form.scss',
 })
 export class AuthForm {
+  private authService = inject(AuthService);
+  private router = inject(Router);
   protected readonly mode = signal<'login' | 'register'>('login');
   protected readonly form = new FormGroup({
     username: new FormControl('', { validators: [Validators.required], nonNullable: true }),
@@ -38,7 +43,11 @@ export class AuthForm {
     this.register(username, password);
   }
 
-  private login(username: string, password: string) {}
+  private login(username: string, password: string) {
+    this.authService.login(username, password).subscribe(() => this.router.navigate(['/']));
+  }
 
-  private register(username: string, password: string) {}
+  private register(username: string, password: string) {
+    this.authService.register(username, password).subscribe(() => this.router.navigate(['/']));
+  }
 }
