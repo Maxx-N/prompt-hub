@@ -45,6 +45,7 @@ export class PromptForm {
   );
 
   protected submit() {
+    this.form.markAllAsTouched();
     if (this.form.invalid) {
       return;
     }
