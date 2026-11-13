@@ -31,4 +31,12 @@ export class AuthService {
         }),
       );
   }
+
+  logout() {
+    return this.httpClient.post(`${this.baseUrl}/logout`, {}).pipe(
+      tap(() => {
+        this.currentUser.set(undefined);
+      }),
+    );
+  }
 }
