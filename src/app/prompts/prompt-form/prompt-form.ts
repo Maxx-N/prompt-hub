@@ -1,4 +1,4 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, effect, inject, input, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -11,6 +11,7 @@ import { Button } from 'primeng/button';
 import { CategoryService } from '../category-service';
 import { PromptService } from '../prompt-service';
 import { Category } from '../category.model';
+import { PromptData } from '../prompt.model';
 
 @Component({
   selector: 'app-prompt-form',
@@ -23,6 +24,13 @@ export class PromptForm {
   private readonly categoryService = inject(CategoryService);
   private readonly router = inject(Router);
 
+  protected readonly promptId = input<number>();
+  protected readonly categories: Signal<Category[]> = toSignal(
+    this.categoryService.getCategories(),
+    {
+      initialValue: [],
+    },
+  );
   protected readonly form = new FormGroup({
     title: new FormControl('', {
       validators: [Validators.required, Validators.maxLength(30)],
@@ -37,12 +45,21 @@ export class PromptForm {
       nonNullable: true,
     }),
   });
-  protected readonly categories: Signal<Category[]> = toSignal(
-    this.categoryService.getCategories(),
-    {
-      initialValue: [],
-    },
-  );
+
+  constructor() {
+    effect(() => {
+      const promptId = this.promptId();
+      if (promptId) {
+        this.promptService.getPrompt(promptId).subscribe((prompt) => {
+          this.form.patchValue({
+            title: prompt.title,
+            content: prompt.content,
+            categoryId: prompt.category.id,
+          });
+        });
+      }
+    });
+  }
 
   protected submit() {
     this.form.markAllAsTouched();
@@ -50,7 +67,22 @@ export class PromptForm {
       return;
     }
     const promptData = this.form.getRawValue();
+    const promptId = this.promptId();
+    if (promptId) {
+      this.update(promptId, promptData);
+      return;
+    }
+    this.create(promptData);
+  }
+
+  private create(promptData: PromptData) {
     this.promptService.createPrompt(promptData).subscribe(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
+  private update(promptId: number, promptData: PromptData) {
+    this.promptService.updatePrompt(promptId, promptData).subscribe(() => {
       this.router.navigate(['/']);
     });
   }

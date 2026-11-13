@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Prompt } from './prompt.model';
+import { Prompt, PromptData } from './prompt.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -16,7 +16,15 @@ export class PromptService {
     return this.httpClient.get<Prompt[]>(this.baseUrl);
   }
 
-  createPrompt(prompt: { title: string; content: string; categoryId: number }): Observable<Prompt> {
+  getPrompt(promptId: number): Observable<Prompt> {
+    return this.httpClient.get<Prompt>(`${this.baseUrl}/${promptId}`);
+  }
+
+  createPrompt(prompt: PromptData): Observable<Prompt> {
     return this.httpClient.post<Prompt>(this.baseUrl, prompt);
+  }
+
+  updatePrompt(promptId: number, prompt: PromptData): Observable<Prompt> {
+    return this.httpClient.put<Prompt>(`${this.baseUrl}/${promptId}`, prompt);
   }
 }

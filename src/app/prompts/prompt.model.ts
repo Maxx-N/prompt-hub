@@ -13,3 +13,9 @@ export interface Prompt {
   };
   userVote: null | 'up' | 'down';
 }
+
+export interface PromptData {
+  title: string;
+  content: string;
+  categoryId: number;
+}

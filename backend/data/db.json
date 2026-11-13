@@ -70,6 +70,24 @@
       "userId": 3,
       "score": 0,
       "createdAt": "2025-02-01T08:45:00.000Z"
+    },
+    {
+      "id": 6,
+      "title": "Post LinkedIn engageant 3",
+      "content": "3 Écris un post LinkedIn court (150–200 mots) qui :\n\n- commence par une accroche question ou chiffre\n- partage une idée concrète ou une leçon apprise\n- se termine par un call-to-action (question ou invitation à commenter)\n\nTon professionnel mais humain.",
+      "categoryId": 1,
+      "userId": 1,
+      "score": 0,
+      "createdAt": "2026-11-13T08:43:53.877Z"
+    },
+    {
+      "id": 7,
+      "title": "Test",
+      "content": "Ceci est un test",
+      "categoryId": 4,
+      "userId": 1,
+      "score": 0,
+      "createdAt": "2026-11-13T08:44:35.013Z"
     }
   ],
   "votes": [
