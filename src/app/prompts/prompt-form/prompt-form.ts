@@ -61,6 +61,16 @@ export class PromptForm {
     });
   }
 
+  protected deletePrompt() {
+    const promptId = this.promptId();
+    if (!promptId) {
+      return;
+    }
+    this.promptService.deletePrompt(promptId).subscribe((val) => {
+      this.router.navigate(['/']);
+    });
+  }
+
   protected submit() {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
@@ -69,19 +79,19 @@ export class PromptForm {
     const promptData = this.form.getRawValue();
     const promptId = this.promptId();
     if (promptId) {
-      this.update(promptId, promptData);
+      this.updatePrompt(promptId, promptData);
       return;
     }
-    this.create(promptData);
+    this.createPrompt(promptData);
   }
 
-  private create(promptData: PromptData) {
+  private createPrompt(promptData: PromptData) {
     this.promptService.createPrompt(promptData).subscribe(() => {
       this.router.navigate(['/']);
     });
   }
 
-  private update(promptId: number, promptData: PromptData) {
+  private updatePrompt(promptId: number, promptData: PromptData) {
     this.promptService.updatePrompt(promptId, promptData).subscribe(() => {
       this.router.navigate(['/']);
     });

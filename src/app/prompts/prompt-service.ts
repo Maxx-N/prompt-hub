@@ -27,4 +27,8 @@ export class PromptService {
   updatePrompt(promptId: number, prompt: PromptData): Observable<Prompt> {
     return this.httpClient.put<Prompt>(`${this.baseUrl}/${promptId}`, prompt);
   }
+
+  deletePrompt(promptId: number) {
+    return this.httpClient.delete(`${this.baseUrl}/${promptId}`);
+  }
 }

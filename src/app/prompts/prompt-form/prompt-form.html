@@ -30,6 +30,15 @@
       <small class="invalid-feedback">La catégorie est requise</small>
     </div>
     <div class="flex justify-content-end gap-2">
+      @if (promptId()) {
+        <p-button
+          label="Supprimer"
+          severity="danger"
+          class="mr-auto"
+          [outlined]="true"
+          (onClick)="deletePrompt()"
+        />
+      }
       <p-button label="Annuler" severity="secondary" routerLink="/" />
       <p-button [label]="promptId() ? 'Modifier' : 'Créer'" type="submit" />
     </div>
