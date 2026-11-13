@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { Prompt } from './prompt.model';
 import { environment } from '../../environments/environment';
@@ -11,7 +12,7 @@ export class PromptService {
   private readonly httpClient = inject(HttpClient);
   private readonly baseUrl = `${environment.apiUrl}/prompts`;
 
-  getPrompts() {
+  getPrompts(): Observable<Prompt[]> {
     return this.httpClient.get<Prompt[]>(this.baseUrl);
   }
 }
