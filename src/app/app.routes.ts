@@ -10,5 +10,5 @@ export const routes: Routes = [
   { path: 'auth', component: AuthForm },
   { path: 'prompts', component: PromptList },
   { path: 'prompts/create', component: PromptForm, canActivate: [authGuard] },
-  { path: 'prompts/:promptId/edit', component: PromptForm },
+  { path: 'prompts/:promptId/edit', component: PromptForm, canActivate: [authGuard] },
 ];
