@@ -1,5 +1,6 @@
 {
   // Autocomplétion des classes PrimeFlex dans les templates (extension ecmel.vscode-html-css)
   "css.styleSheets": ["node_modules/primeflex/primeflex.css", "src/styles.scss"],
-  "css.enabledLanguages": ["html"]
+  "css.enabledLanguages": ["html"],
+  "typescript.preferences.includePackageJsonAutoImports": "on"
 }
