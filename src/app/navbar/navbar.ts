@@ -1,9 +1,11 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Button } from 'primeng/button';
 
 import { AuthService } from '../auth/auth-service';
+
+const DARK_MODE_KEY = 'darkMode';
 
 @Component({
   selector: 'app-navbar',
@@ -14,11 +16,13 @@ import { AuthService } from '../auth/auth-service';
 export class Navbar {
   protected authService = inject(AuthService);
   protected router = inject(Router);
-  protected isDark = signal(false);
+  protected isDark = signal(localStorage.getItem(DARK_MODE_KEY) === 'true');
 
-  toggleDarkMode() {
-    this.isDark.update((isDark) => !isDark);
-    document.documentElement.classList.toggle('app-dark', this.isDark());
+  constructor() {
+    effect(() => {
+      document.documentElement.classList.toggle('app-dark', this.isDark());
+      localStorage.setItem(DARK_MODE_KEY, this.isDark().toString());
+    });
   }
 
   logout() {
