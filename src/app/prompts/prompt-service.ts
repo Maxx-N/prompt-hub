@@ -15,4 +15,8 @@ export class PromptService {
   getPrompts(): Observable<Prompt[]> {
     return this.httpClient.get<Prompt[]>(this.baseUrl);
   }
+
+  createPrompt(prompt: { title: string; content: string; categoryId: number }): Observable<Prompt> {
+    return this.httpClient.post<Prompt>(this.baseUrl, prompt);
+  }
 }
