@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "prettier --write \"src/**/*.{ts,html,scss,css,json}\"",
-    "api": "npm start --prefix backend"
+    "api": "npm start --prefix backend",
+    "api:auth": "npm run start:auth --prefix backend"
   },
   "prettier": {
     "printWidth": 100,
