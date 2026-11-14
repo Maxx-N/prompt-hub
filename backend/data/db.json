@@ -46,7 +46,7 @@
       "content": "Écris un post LinkedIn court (150–200 mots) qui :\n\n- commence par une accroche question ou chiffre\n- partage une idée concrète ou une leçon apprise\n- se termine par un call-to-action (question ou invitation à commenter)\n\nTon professionnel mais humain.",
       "categoryId": 2,
       "userId": 2,
-      "score": 1,
+      "score": 2,
       "createdAt": "2025-01-20T14:30:00.000Z"
     },
     {
@@ -210,6 +210,11 @@
       "promptId": 7,
       "userId": 4,
       "type": "down"
+    },
+    {
+      "promptId": 2,
+      "userId": 4,
+      "type": "up"
     }
   ]
 }

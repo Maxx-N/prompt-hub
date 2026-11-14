@@ -23,6 +23,7 @@
       <p-button
         icon="pi pi-thumbs-up"
         size="small"
+        [loading]="voting()"
         [severity]="userVote() === 'up' ? 'primary' : 'secondary'"
         (onClick)="upvote()"
       />
@@ -30,6 +31,7 @@
       <p-button
         icon="pi pi-thumbs-down"
         size="small"
+        [loading]="voting()"
         [severity]="userVote() === 'down' ? 'primary' : 'secondary'"
         (onClick)="downvote()"
       />

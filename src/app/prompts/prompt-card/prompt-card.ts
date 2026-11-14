@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, linkedSignal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Button } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -24,6 +24,7 @@ export class PromptCard {
   private messageService = inject(MessageService);
   prompt = input.required<Prompt>();
 
+  voting = signal(false);
   score = linkedSignal(() => this.prompt().score);
   userVote = linkedSignal(() => (this.authService.currentUser() ? this.prompt().userVote : null));
 
@@ -47,9 +48,11 @@ export class PromptCard {
       this.router.navigate(['/auth']);
       return;
     }
+    this.voting.set(true);
     this.promptService.upvotePrompt(this.prompt().id).subscribe((updatedPrompt) => {
       this.score.set(updatedPrompt.score);
       this.userVote.set(updatedPrompt.userVote);
+      this.voting.set(false);
     });
   }
 
@@ -58,9 +61,11 @@ export class PromptCard {
       this.router.navigate(['/auth']);
       return;
     }
+    this.voting.set(true);
     this.promptService.downvotePrompt(this.prompt().id).subscribe((updatedPrompt) => {
       this.score.set(updatedPrompt.score);
       this.userVote.set(updatedPrompt.userVote);
+      this.voting.set(false);
     });
   }
 }
