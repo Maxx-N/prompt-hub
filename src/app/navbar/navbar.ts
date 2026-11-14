@@ -17,6 +17,7 @@ export class Navbar {
   protected authService = inject(AuthService);
   protected router = inject(Router);
   protected isDark = signal(localStorage.getItem(DARK_MODE_KEY) === 'true');
+  protected loggingOut = signal(false);
 
   constructor() {
     effect(() => {
@@ -26,7 +27,9 @@ export class Navbar {
   }
 
   logout() {
+    this.loggingOut.set(true);
     this.authService.logout().subscribe(() => {
+      this.loggingOut.set(false);
       this.router.navigate(['/']);
     });
   }

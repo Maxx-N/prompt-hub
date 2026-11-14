@@ -20,6 +20,7 @@ export class AuthForm {
   private authService = inject(AuthService);
   private router = inject(Router);
   protected readonly mode = signal<'login' | 'register'>('login');
+  protected readonly submitting = signal(false);
   protected readonly form = new FormGroup({
     username: new FormControl('', { validators: [Validators.required], nonNullable: true }),
     password: new FormControl('', {
@@ -38,6 +39,7 @@ export class AuthForm {
       return;
     }
     const { username, password } = this.form.getRawValue();
+    this.submitting.set(true);
     if (this.mode() === 'login') {
       this.login(username, password);
       return;
@@ -48,9 +50,11 @@ export class AuthForm {
   private login(username: string, password: string) {
     this.authService.login(username, password).subscribe({
       next: () => {
+        this.submitting.set(false);
         this.router.navigate(['/']);
       },
       error: () => {
+        this.submitting.set(false);
         this.messageService.add({
           severity: 'error',
           summary: 'Erreur',
@@ -61,6 +65,9 @@ export class AuthForm {
   }
 
   private register(username: string, password: string) {
-    this.authService.register(username, password).subscribe(() => this.router.navigate(['/']));
+    this.authService.register(username, password).subscribe(() => {
+      this.submitting.set(false);
+      this.router.navigate(['/']);
+    });
   }
 }

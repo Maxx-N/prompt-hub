@@ -26,9 +26,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<CurrentUser> {
     return this.httpClient.post<CurrentUser>(`${this.baseUrl}/login`, { username, password }).pipe(
-      tap((currentUser) => {
-        this.currentUser.set(currentUser);
-      }),
+      tap((currentUser) => this.currentUser.set(currentUser)),
     );
   }
 
@@ -44,9 +42,7 @@ export class AuthService {
 
   logout() {
     return this.httpClient.post(`${this.baseUrl}/logout`, {}).pipe(
-      tap(() => {
-        this.currentUser.set(undefined);
-      }),
+      tap(() => this.currentUser.set(undefined)),
     );
   }
 }

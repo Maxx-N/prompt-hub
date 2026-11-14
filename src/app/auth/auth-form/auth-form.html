@@ -21,7 +21,11 @@
         (onClick)="toggleMode()"
         [label]="mode() === 'login' ? 'Créer un compte' : 'Se connecter'"
       />
-      <p-button type="submit" [label]="mode() === 'login' ? 'Se connecter' : 'Créer un compte'" />
+      <p-button
+        type="submit"
+        [label]="mode() === 'login' ? 'Se connecter' : 'Créer un compte'"
+        [loading]="submitting()"
+      />
     </div>
   </form>
 </p-card>
