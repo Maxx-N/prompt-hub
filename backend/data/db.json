@@ -46,7 +46,7 @@
       "content": "Écris un post LinkedIn court (150–200 mots) qui :\n\n- commence par une accroche question ou chiffre\n- partage une idée concrète ou une leçon apprise\n- se termine par un call-to-action (question ou invitation à commenter)\n\nTon professionnel mais humain.",
       "categoryId": 2,
       "userId": 2,
-      "score": 1,
+      "score": 2,
       "createdAt": "2025-01-20T14:30:00.000Z"
     },
     {
@@ -55,7 +55,7 @@
       "content": "Rédige une introduction d'article de blog (2–3 paragraphes) optimisée SEO :\n\n- inclure le mot-clé principal dans le premier paragraphe\n- poser le problème du lecteur\n- annoncer ce que l'article va apporter\n\nTon clair et direct.",
       "categoryId": 3,
       "userId": 2,
-      "score": 0,
+      "score": 1,
       "createdAt": "2025-01-25T09:15:00.000Z"
     },
     {
@@ -64,7 +64,7 @@
       "content": "Crée une image avec :\n\n- un sujet principal bien défini\n- un style artistique cohérent (ex. aquarelle, pixel art, photoréaliste)\n- une composition équilibrée\n- des couleurs harmonieuses\n\nÉviter le texte dans l'image.",
       "categoryId": 1,
       "userId": 3,
-      "score": 0,
+      "score": -1,
       "createdAt": "2025-01-28T11:00:00.000Z"
     },
     {
@@ -73,7 +73,7 @@
       "content": "Génère un court commentaire (1–2 lignes) en anglais pour une fonction :\n\n- décrire l'intention (what/why), pas le détail d'implémentation\n- style JSDoc ou docstring selon la langue.",
       "categoryId": 4,
       "userId": 3,
-      "score": 0,
+      "score": -1,
       "createdAt": "2025-02-01T08:45:00.000Z"
     },
     {
@@ -82,7 +82,7 @@
       "content": "Ceci est un test",
       "categoryId": 4,
       "userId": 1,
-      "score": 0,
+      "score": -1,
       "createdAt": "2026-11-13T08:44:35.013Z"
     },
     {
@@ -91,7 +91,7 @@
       "content": "Test auth",
       "categoryId": 1,
       "userId": 4,
-      "score": 0,
+      "score": -1,
       "createdAt": "2026-11-13T10:14:05.785Z"
     }
   ],
@@ -99,6 +99,36 @@
     {
       "promptId": 2,
       "userId": 2,
+      "type": "up"
+    },
+    {
+      "promptId": 3,
+      "userId": 4,
+      "type": "up"
+    },
+    {
+      "promptId": 4,
+      "userId": 4,
+      "type": "down"
+    },
+    {
+      "promptId": 5,
+      "userId": 4,
+      "type": "down"
+    },
+    {
+      "promptId": 7,
+      "userId": 4,
+      "type": "down"
+    },
+    {
+      "promptId": 8,
+      "userId": 4,
+      "type": "down"
+    },
+    {
+      "promptId": 2,
+      "userId": 4,
       "type": "up"
     }
   ]
