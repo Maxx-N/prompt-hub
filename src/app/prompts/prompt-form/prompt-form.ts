@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, Signal } from '@angular/core';
+import { Component, effect, inject, input, signal, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -8,6 +8,7 @@ import { SelectModule } from 'primeng/select';
 import { Textarea } from 'primeng/textarea';
 import { Button } from 'primeng/button';
 import { MessageService } from 'primeng/api';
+import { ProgressSpinner } from 'primeng/progressspinner';
 
 import { CategoryService } from '../category-service';
 import { PromptService } from '../prompt-service';
@@ -16,7 +17,16 @@ import { PromptData } from '../prompt.model';
 
 @Component({
   selector: 'app-prompt-form',
-  imports: [Card, InputTextModule, Textarea, SelectModule, Button, ReactiveFormsModule, RouterLink],
+  imports: [
+    Card,
+    InputTextModule,
+    Textarea,
+    SelectModule,
+    Button,
+    ReactiveFormsModule,
+    RouterLink,
+    ProgressSpinner,
+  ],
   templateUrl: './prompt-form.html',
   styleUrl: './prompt-form.scss',
 })
@@ -25,6 +35,10 @@ export class PromptForm {
   private readonly promptService = inject(PromptService);
   private readonly categoryService = inject(CategoryService);
   private readonly router = inject(Router);
+
+  protected readonly loading = signal(false);
+  protected readonly submitting = signal(false);
+  protected readonly deleting = signal(false);
 
   protected readonly promptId = input<number>();
   protected readonly categories: Signal<Category[]> = toSignal(
@@ -52,12 +66,14 @@ export class PromptForm {
     effect(() => {
       const promptId = this.promptId();
       if (promptId) {
+        this.loading.set(true);
         this.promptService.getPrompt(promptId).subscribe((prompt) => {
           this.form.patchValue({
             title: prompt.title,
             content: prompt.content,
             categoryId: prompt.category.id,
           });
+          this.loading.set(false);
         });
       }
     });
@@ -68,6 +84,7 @@ export class PromptForm {
     if (!promptId) {
       return;
     }
+    this.deleting.set(true);
     this.promptService.deletePrompt(promptId).subscribe(() => {
       this.messageService.add({
         severity: 'success',
@@ -75,6 +92,7 @@ export class PromptForm {
         detail: 'Prompt supprimé avec succès',
       });
       this.router.navigate(['/']);
+      this.deleting.set(false);
     });
   }
 
@@ -85,6 +103,7 @@ export class PromptForm {
     }
     const promptData = this.form.getRawValue();
     const promptId = this.promptId();
+    this.submitting.set(true);
     if (promptId) {
       this.updatePrompt(promptId, promptData);
       return;
@@ -100,6 +119,7 @@ export class PromptForm {
         detail: 'Prompt créé avec succès',
       });
       this.router.navigate(['/']);
+      this.submitting.set(false);
     });
   }
 
@@ -111,6 +131,7 @@ export class PromptForm {
         detail: 'Prompt modifié avec succès',
       });
       this.router.navigate(['/']);
+      this.submitting.set(false);
     });
   }
 }

@@ -95,24 +95,6 @@
       "createdAt": "2026-11-14T13:53:32.779Z"
     },
     {
-      "id": 10,
-      "title": "Test",
-      "content": "Test",
-      "categoryId": 4,
-      "userId": 4,
-      "score": 0,
-      "createdAt": "2026-11-14T14:01:09.700Z"
-    },
-    {
-      "id": 11,
-      "title": "Test",
-      "content": "Test",
-      "categoryId": 4,
-      "userId": 4,
-      "score": 0,
-      "createdAt": "2026-11-14T14:01:09.889Z"
-    },
-    {
       "id": 12,
       "title": "Test",
       "content": "Test",
@@ -159,7 +141,7 @@
     },
     {
       "id": 17,
-      "title": "Test",
+      "title": "Test 2",
       "content": "Test",
       "categoryId": 4,
       "userId": 4,
@@ -176,13 +158,13 @@
       "createdAt": "2026-11-14T14:01:11.549Z"
     },
     {
-      "id": 19,
-      "title": "Test",
-      "content": "Test",
-      "categoryId": 4,
+      "id": 20,
+      "title": "Hello there",
+      "content": "general kenobi",
+      "categoryId": 1,
       "userId": 4,
       "score": 0,
-      "createdAt": "2026-11-14T14:01:11.735Z"
+      "createdAt": "2026-11-14T14:56:43.615Z"
     }
   ],
   "votes": [

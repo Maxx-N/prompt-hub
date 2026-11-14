@@ -1,46 +1,55 @@
-<p-card>
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="field">
-      <label for="title">Titre</label>
-      <input id="title" type="text" pInputText class="w-full" formControlName="title" />
-      <small class="invalid-feedback">Le titre est requis (max 30 caractères)</small>
-    </div>
-    <div class="field">
-      <label for="content">Contenu</label>
-      <textarea
-        id="content"
-        type="text"
-        pTextarea
-        class="w-full"
-        formControlName="content"
-      ></textarea>
-      <small class="invalid-feedback">Le contenu est requis</small>
-    </div>
-    <div class="field">
-      <label for="category">Catégorie</label>
-      <p-select
-        inputId="category"
-        type="text"
-        class="w-full"
-        [options]="categories()"
-        optionValue="id"
-        optionLabel="name"
-        formControlName="categoryId"
-      />
-      <small class="invalid-feedback">La catégorie est requise</small>
-    </div>
-    <div class="flex justify-content-end gap-2">
-      @if (promptId()) {
-        <p-button
-          label="Supprimer"
-          severity="danger"
-          class="mr-auto"
-          [outlined]="true"
-          (onClick)="deletePrompt()"
+@if (loading()) {
+  <div class="flex justify-content-center py-6"><p-progress-spinner /></div>
+} @else {
+  <p-card>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label for="title">Titre</label>
+        <input id="title" type="text" pInputText class="w-full" formControlName="title" />
+        <small class="invalid-feedback">Le titre est requis (max 30 caractères)</small>
+      </div>
+      <div class="field">
+        <label for="content">Contenu</label>
+        <textarea
+          id="content"
+          type="text"
+          pTextarea
+          class="w-full"
+          formControlName="content"
+        ></textarea>
+        <small class="invalid-feedback">Le contenu est requis</small>
+      </div>
+      <div class="field">
+        <label for="category">Catégorie</label>
+        <p-select
+          inputId="category"
+          type="text"
+          class="w-full"
+          [options]="categories()"
+          optionValue="id"
+          optionLabel="name"
+          formControlName="categoryId"
         />
-      }
-      <p-button label="Annuler" severity="secondary" routerLink="/" />
-      <p-button [label]="promptId() ? 'Modifier' : 'Créer'" type="submit" />
-    </div>
-  </form>
-</p-card>
+        <small class="invalid-feedback">La catégorie est requise</small>
+      </div>
+      <div class="flex justify-content-end gap-2">
+        @if (promptId()) {
+          <p-button
+            label="Supprimer"
+            severity="danger"
+            class="mr-auto"
+            [outlined]="true"
+            [loading]="deleting()"
+            (onClick)="deletePrompt()"
+          />
+        }
+        <p-button label="Annuler" severity="secondary" routerLink="/" />
+        <p-button
+          [label]="promptId() ? 'Modifier' : 'Créer'"
+          type="submit"
+          [loading]="submitting()"
+        />
+      </div>
+    </form>
+  </p-card>
+}
