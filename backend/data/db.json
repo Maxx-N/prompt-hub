@@ -46,7 +46,7 @@
       "content": "Écris un post LinkedIn court (150–200 mots) qui :\n\n- commence par une accroche question ou chiffre\n- partage une idée concrète ou une leçon apprise\n- se termine par un call-to-action (question ou invitation à commenter)\n\nTon professionnel mais humain.",
       "categoryId": 2,
       "userId": 2,
-      "score": 2,
+      "score": 1,
       "createdAt": "2025-01-20T14:30:00.000Z"
     },
     {
@@ -93,6 +93,96 @@
       "userId": 4,
       "score": 0,
       "createdAt": "2026-11-14T13:53:32.779Z"
+    },
+    {
+      "id": 10,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:09.700Z"
+    },
+    {
+      "id": 11,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:09.889Z"
+    },
+    {
+      "id": 12,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:10.089Z"
+    },
+    {
+      "id": 13,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:10.274Z"
+    },
+    {
+      "id": 14,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:10.501Z"
+    },
+    {
+      "id": 15,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:10.719Z"
+    },
+    {
+      "id": 16,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:10.931Z"
+    },
+    {
+      "id": 17,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:11.348Z"
+    },
+    {
+      "id": 18,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:11.549Z"
+    },
+    {
+      "id": 19,
+      "title": "Test",
+      "content": "Test",
+      "categoryId": 4,
+      "userId": 4,
+      "score": 0,
+      "createdAt": "2026-11-14T14:01:11.735Z"
     }
   ],
   "votes": [
@@ -120,11 +210,6 @@
       "promptId": 7,
       "userId": 4,
       "type": "down"
-    },
-    {
-      "promptId": 2,
-      "userId": 4,
-      "type": "up"
     }
   ]
 }
