@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { Textarea } from 'primeng/textarea';
 import { Button } from 'primeng/button';
+import { MessageService } from 'primeng/api';
 
 import { CategoryService } from '../category-service';
 import { PromptService } from '../prompt-service';
@@ -20,6 +21,7 @@ import { PromptData } from '../prompt.model';
   styleUrl: './prompt-form.scss',
 })
 export class PromptForm {
+  private readonly messageService = inject(MessageService);
   private readonly promptService = inject(PromptService);
   private readonly categoryService = inject(CategoryService);
   private readonly router = inject(Router);
@@ -66,7 +68,12 @@ export class PromptForm {
     if (!promptId) {
       return;
     }
-    this.promptService.deletePrompt(promptId).subscribe((val) => {
+    this.promptService.deletePrompt(promptId).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Supprimé',
+        detail: 'Prompt supprimé avec succès',
+      });
       this.router.navigate(['/']);
     });
   }
@@ -87,12 +94,22 @@ export class PromptForm {
 
   private createPrompt(promptData: PromptData) {
     this.promptService.createPrompt(promptData).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Créé',
+        detail: 'Prompt créé avec succès',
+      });
       this.router.navigate(['/']);
     });
   }
 
   private updatePrompt(promptId: number, promptData: PromptData) {
     this.promptService.updatePrompt(promptId, promptData).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Modifié',
+        detail: 'Prompt modifié avec succès',
+      });
       this.router.navigate(['/']);
     });
   }

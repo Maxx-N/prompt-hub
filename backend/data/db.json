@@ -86,13 +86,13 @@
       "createdAt": "2026-11-13T08:44:35.013Z"
     },
     {
-      "id": 8,
-      "title": "Test",
-      "content": "Test auth",
-      "categoryId": 1,
+      "id": 9,
+      "title": "Modification",
+      "content": "Test modification",
+      "categoryId": 2,
       "userId": 4,
-      "score": -1,
-      "createdAt": "2026-11-13T10:14:05.785Z"
+      "score": 0,
+      "createdAt": "2026-11-14T13:53:32.779Z"
     }
   ],
   "votes": [
@@ -118,11 +118,6 @@
     },
     {
       "promptId": 7,
-      "userId": 4,
-      "type": "down"
-    },
-    {
-      "promptId": 8,
       "userId": 4,
       "type": "down"
     },

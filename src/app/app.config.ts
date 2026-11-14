@@ -9,6 +9,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import Aura from '@primeuix/themes/aura';
 import { definePreset } from '@primeuix/themes';
 import { providePrimeNG } from 'primeng/config';
+import { MessageService } from 'primeng/api';
 
 import { routes } from './app.routes';
 import { authInterceptor } from './auth/auth-interceptor';
@@ -46,5 +47,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    MessageService,
   ],
 };

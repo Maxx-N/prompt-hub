@@ -1,13 +1,15 @@
 import { Component, computed, inject, input, linkedSignal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Button } from 'primeng/button';
-import { TextareaModule } from 'primeng/textarea';
-import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
+import { TextareaModule } from 'primeng/textarea';
+import { MessageService } from 'primeng/api';
+import { from } from 'rxjs';
 
-import { Prompt } from '../prompt.model';
 import { AuthService } from '../../auth/auth-service';
 import { PromptService } from '../prompt-service';
+import { Prompt } from '../prompt.model';
 
 @Component({
   selector: 'app-prompt-card',
@@ -19,6 +21,7 @@ export class PromptCard {
   private router = inject(Router);
   private authService = inject(AuthService);
   private promptService = inject(PromptService);
+  private messageService = inject(MessageService);
   prompt = input.required<Prompt>();
 
   score = linkedSignal(() => this.prompt().score);
@@ -29,8 +32,14 @@ export class PromptCard {
     return this.prompt().author.id === currentUser?.id;
   });
 
-  copyToClipboard() {
-    void navigator.clipboard.writeText(this.prompt().content);
+  async copyToClipboard() {
+    from(navigator.clipboard.writeText(this.prompt().content)).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Copié',
+        detail: 'Prompt copié dans le presse-papier',
+      });
+    });
   }
 
   upvote() {
