@@ -5,6 +5,7 @@ import { Card } from 'primeng/card';
 import { Button } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../auth-service';
 
@@ -15,6 +16,7 @@ import { AuthService } from '../auth-service';
   styleUrl: './auth-form.scss',
 })
 export class AuthForm {
+  private messageService = inject(MessageService);
   private authService = inject(AuthService);
   private router = inject(Router);
   protected readonly mode = signal<'login' | 'register'>('login');
@@ -44,7 +46,18 @@ export class AuthForm {
   }
 
   private login(username: string, password: string) {
-    this.authService.login(username, password).subscribe(() => this.router.navigate(['/']));
+    this.authService.login(username, password).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erreur',
+          detail: 'Connexion impossible, réessayez',
+        });
+      },
+    });
   }
 
   private register(username: string, password: string) {
